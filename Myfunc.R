@@ -1,13 +1,6 @@
 ## Example matrix m <- matrix(1:4, nrow = 2, ncol = 2)
 ## Works like an example cachemean
-
-## Reccomends: assign "makeCacheMatrix" to some variable "V" to activate all functions inside the list
-## USE:  V$setValue(m) to store matrix
-## USE:  V$setCache(m) to store inverse
-## USE:  V$getValue(m) to get matrix
-## USE:  V$getCache(m) to get inverse matrix
-
-makeCacheMatrix <- function(x = matrix()) {
+makeCacheMatrix <- function(x = matrix) {
         ## set matrix to NULL
         invMatrix <- NULL
         ## set Matrix
@@ -28,16 +21,7 @@ makeCacheMatrix <- function(x = matrix()) {
         list(setValue = setValue, getValue = getValue, setCache = setCache, getCache = getCache)
 }
 
-
-
-
-## USE:  cacheSolve(V)
-##This function computes the inverse of the special "matrix" returned by makeCacheMatrix above.
-##If the inverse has already been calculated (and the matrix has not changed),
-##then the cachesolve should retrieve the inverse from the cache.
-
-
-cacheSolve <- function(x, ...) {
+cacheSolve <- function(x) {
         ## take value of invMatrix
         invMatrix <- x$getCache()
         ## Check if invMatrix is not NULL print getting cached data
@@ -51,4 +35,5 @@ cacheSolve <- function(x, ...) {
         invMatrix <- solve(data)
         x$setCache(invMatrix)
         invMatrix
+        
 }
